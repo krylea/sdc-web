@@ -72,78 +72,78 @@ export const Content = styled.div`
 `;
 
 export default class Home extends React.Component {
-    state = {
-        flowcharts: [],
-    };
-    componentDidMount() {
-        getFlowcharts()
-            .then((flowcharts) => this.setState({ flowcharts }))
-            .catch(({ response }) => {
-                if (!response) {
-                    console.log('Error fetching flow charts');
-                }
-            });
-    }
-    render() {
-        return (
-            <div>
-                <MenuBar />
-                <div>
-                    {this.renderHeader()}
-                    <Content>
-                        {this.renderQuestion()}
-                        {this.renderCards()}
-                        {this.renderFooter()}
-                    </Content>
-                </div>
-            </div>
-        );
-    }
+  state = {
+    flowcharts: [],
+  };
+  componentDidMount() {
+    getFlowcharts()
+      .then((flowcharts) => this.setState({ flowcharts }))
+      .catch(({ response }) => {
+        if (!response) {
+          console.log('Error fetching flow charts');
+        }
+      });
+  }
+  render() {
+    return (
+      <div>
+        <MenuBar />
+        <div>
+          {this.renderHeader()}
+          <Content>
+            {this.renderQuestion()}
+            {this.renderCards()}
+            {this.renderFooter()}
+          </Content>
+        </div>
+      </div>
+    );
+  }
 
-    renderHeader() {
-        return (
-            <Banner>
-                <HeaderTitle>
-                    Welcome to the{' '}
-                    <BoldedWord>Social Development Centre Waterloo Region.</BoldedWord>
-                </HeaderTitle>
-                <HeaderDescription>
-                    The Social Development Center is a learning organization whose vision
-                    is to ensure fair and equal access to social, economic and political
-                    life for everyone in the Waterloo Region.
-                </HeaderDescription>
-            </Banner>
-        );
-    }
+  renderHeader() {
+    return (
+      <Banner>
+        <HeaderTitle>
+          Welcome to the{' '}
+          <BoldedWord>Social Development Centre Waterloo Region.</BoldedWord>
+        </HeaderTitle>
+        <HeaderDescription>
+          The Social Development Center is a learning organization whose vision
+          is to ensure fair and equal access to social, economic and political
+          life for everyone in the Waterloo Region.
+        </HeaderDescription>
+      </Banner>
+    );
+  }
 
-    renderQuestion() {
-        return (
-            <QuestionContainer>
-                <Question>What type of information are you looking for?</Question>
-            </QuestionContainer>
-        );
-    }
+  renderQuestion() {
+    return (
+      <QuestionContainer>
+        <Question>What type of information are you looking for?</Question>
+      </QuestionContainer>
+    );
+  }
 
-    renderCards() {
-        const { flowcharts } = this.state;
-        const { history } = this.props;
-        return flowcharts.map((flowchart) => (
-            <Box key={flowchart.id}>
-                <Card
-                    id={flowchart.id}
-                    title={flowchart.title}
-                    description={flowchart.description}
-                    onClick={() => history.push(`/flowchart/${flowchart.id}`)}
-                />
-            </Box>
-        ));
-    }
+  renderCards() {
+    const { flowcharts } = this.state;
+    const { history } = this.props;
+    return flowcharts.map((flowchart) => (
+      <Box key={flowchart.id}>
+        <Card
+          id={flowchart.id}
+          title={flowchart.title}
+          description={flowchart.description}
+          onClick={() => history.push(`/flowchart/${flowchart.id}`)}
+        />
+      </Box>
+    ));
+  }
 
-    renderFooter() {
-        return (
-            <FooterContainer>
-                <Contact />
-            </FooterContainer>
-        );
-    }
+  renderFooter() {
+    return (
+      <FooterContainer>
+        <Contact />
+      </FooterContainer>
+    );
+  }
 }
